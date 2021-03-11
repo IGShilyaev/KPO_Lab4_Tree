@@ -17,16 +17,18 @@ namespace KPO_Lab4_Tree
         private readonly string connectionString = ConfigurationManager.AppSettings.Get("ConnectionString").ToString();
 
         string chosenObject;
+        string mode;
         
         public InsertForm()
         {
             InitializeComponent();
         }
 
-        public InsertForm( string selectedItem)
+        public InsertForm( string selectedItem, string chsMode)
         {
 
             chosenObject = selectedItem;
+            mode = chsMode;
             InitializeComponent();
 
         }
@@ -41,10 +43,16 @@ namespace KPO_Lab4_Tree
                     using (var reader = cmd.ExecuteReader())
                     {
                         reader.Read();
-                        for (int i = 0; i < reader.FieldCount; i++)
+                        if(mode == "AddInto")
+                        for (int i = 1; i < reader.FieldCount; i++)
                         {
                             dataGridView1.Columns.Add(reader.GetName(i), reader.GetName(i));
                         }
+                        else
+                            for (int i = 0; i < reader.FieldCount; i++)
+                            {
+                                dataGridView1.Columns.Add(reader.GetName(i), reader.GetName(i));
+                            }
                     }
                     dataGridView1.Rows.Add();
                 }

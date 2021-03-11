@@ -258,7 +258,7 @@ namespace KPO_Lab4_Tree
                         break;
                     }
             }
-            InsertForm form = new InsertForm(table);
+            InsertForm form = new InsertForm(table, "Add");
             if(form.ShowDialog() == DialogResult.OK)
             {
                 try
@@ -349,7 +349,7 @@ namespace KPO_Lab4_Tree
                         break;
                     }
             }
-            InsertForm form = new InsertForm(table);
+            InsertForm form = new InsertForm(table, "AddInto");
             if (form.ShowDialog() == DialogResult.OK)
             {
                 try
